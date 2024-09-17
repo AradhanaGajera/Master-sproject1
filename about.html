@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About Us Page</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Simulate fetching subscriber count
+            var subscriberCount = 105000; // Example count
+            $('#subscriberCount').text(subscriberCount);
+
+            // Handle form submission
+            $('#joinForm').submit(function (event) {
+                event.preventDefault();
+                var email = $('#email').val();
+                if (email) {
+                    alert("Thank you for joining us, " + email + "!");
+                    $('#joinForm')[0].reset();
+                } else {
+                    alert("Please enter a valid email address.");
+                }
+            });
+
+            // Load additional content dynamically
+            $('#loadMore').click(function () {
+                $.ajax({
+                    url: 'additional_content.html', // URL to load additional content
+                    success: function (data) {
+                        $('#additionalContent').html(data);
+                    },
+                    error: function () {
+                        alert('Failed to load additional content.');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div style="margin:6px;">
+        <nav class="navbar navbar-inverse navbar-static-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">About my self</a>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="/about">About</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron" style="padding:40px;">
+            <h1>About Us</h1>
+            <strong>
+                <p>Hi, I'm Aradhana gajera, a passionate Full Stack Developer with a strong focus on building robust, scalable web applications. With expertise in both frontend and backend technologies, I enjoy bringing ideas to life through code. My primary skillset includes React for building dynamic user interfaces and Node.js for creating efficient server-side solutions.
+
+                    I’m always looking to enhance my skills, and currently, I’m diving deep into CI/CD pipelines to streamline development processes and ensure smooth, automated deployments. My goal is to continuously evolve as a developer and contribute to innovative, high-impact projects.
+                    
+                    When I’m not coding, I’m exploring new technologies, reading about software architecture, or solving complex problems that make development both challenging and fun.
+                    
+                    Let’s connect and collaborate on something amazing!</p>
+            </strong>
+            <p>Join Me and stay updated with New skills!</p>
+            <p>Current Followers: <span id="subscriberCount"></span></p>
+            <form id="joinForm" class="form-inline">
+                <div class="form-group">
+                    <label for="email">Email address:</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                </div>
+                <button type="submit" class="btn btn-primary">Join us</button>
+            </form>
+            <br>
+            <button id="loadMore" class="btn btn-info">Load More Content</button>
+            <div id="additionalContent" style="margin-top:20px;"></div>
+        </div>
+    </div>
+</body>
+</html>
